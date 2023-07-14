@@ -3,13 +3,13 @@ import Link from "next/link";
 import Image from 'next/image';
 
 export interface cardGameProps {
-  link: string;
-  title: string;
-  subTitle: string;
-  src: string
+  link?: string;
+  title?: string;
+  subTitle?: string;
+  src?: string
 }
 
-export default function cardGame({link, src = '', subTitle = '', title = ''}: cardGameProps) {
+export default function cardGame({link = '', src = '', subTitle = '', title = ''}: cardGameProps) {
 
 
   return (

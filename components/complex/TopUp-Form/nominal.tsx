@@ -1,4 +1,5 @@
 import React from 'react'
+import { NumericFormat } from "react-number-format";
 
 
 import {NominalInterface} from '@/interface/Player'
@@ -40,7 +41,9 @@ const {_id, coinName, coinQuantity, price} = props
                 />
               </svg>
             </div>
-                      <p className="text-lg color-palette-1 m-0">Rp {price}</p>
+        <p className="text-lg color-palette-1 m-0">
+                <NumericFormat value={price} displayType='text'  prefix='Rp. ' thousandSeparator="." decimalSeparator=','  />
+        </p>
           </div>
         </label>
   );

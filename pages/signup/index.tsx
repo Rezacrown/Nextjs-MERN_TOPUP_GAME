@@ -1,12 +1,22 @@
+import React, {useState} from 'react'
 import SignUp_Form from '@/components/complex/SignUp-Form'
-import React from 'react'
+import SignUp_Form_photo from '@/components/complex/SignUp-Form/photo'
+
+import { useRouter } from "next/router";
+
 
 export default function signup() {
+  const  {query, isReady} = useRouter()
+
   return (
     <>
       <section className="sign-up mx-auto pt-lg-100 pb-lg-100 pt-30 pb-47">
         <div className="container mx-auto">
-            <SignUp_Form/>
+
+
+          {query?.photo == '' ?  <SignUp_Form_photo/> : <SignUp_Form />}
+
+            
         </div>
     </section>
     </>

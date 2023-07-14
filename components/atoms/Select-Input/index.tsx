@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 
 interface OptionsInput {
   value: string | '';
@@ -10,9 +10,11 @@ interface SelectInput_props {
   placeHolder?: string;
   name?: string;
   options: OptionsInput[];
+  required?: boolean;
+  handleChange?: (event: ChangeEvent<HTMLSelectElement>) => void
 }
 
-export default function SelectInput({ options, label, placeHolder, name }: SelectInput_props) {
+export default function SelectInput({ options, label, placeHolder, name, handleChange, required }: SelectInput_props) {
   return (
     <>
       <label className="form-label text-lg fw-medium color-palette-1 mb-10">
@@ -23,6 +25,8 @@ export default function SelectInput({ options, label, placeHolder, name }: Selec
         // aria-label="Favorite Game"
         name={name}
         className="form-select d-block w-100 rounded-pill text-lg"
+        onChange={handleChange}
+        required={required}
       >
         {placeHolder && <option value='' disabled selected>{placeHolder}</option>}
 

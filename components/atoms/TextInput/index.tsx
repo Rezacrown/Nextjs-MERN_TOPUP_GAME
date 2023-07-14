@@ -5,6 +5,9 @@ export interface TextInputProps {
   label?: string | "";
   placeHolder?: string | "";
   name?: string;
+  maxLength?: number;
+  minLength?: number;
+  required?: boolean;
   handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -14,11 +17,13 @@ export default function TextInput({
   name,
   type,
   handleChange,
+  maxLength,
+  minLength,
+  required,
 }: TextInputProps) {
   return (
     <>
       <label
-        // for="email"
         className="form-label text-lg fw-medium color-palette-1 mb-10"
       >
         {label}
@@ -26,11 +31,14 @@ export default function TextInput({
       <input
         type={type}
         className="form-control rounded-pill text-lg"
-        // id="email"
         name={name}
-        // aria-describedby="email"
+        aria-describedby="email"
+        autoComplete=""
+        required={required}
         placeholder={placeHolder}
         onChange={handleChange}
+        minLength={minLength}
+        maxLength={maxLength}
       />
     </>
   );

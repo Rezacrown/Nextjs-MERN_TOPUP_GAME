@@ -29,7 +29,7 @@ export interface PaymentInterface {
   _id?: string;
   type?: string;
   status?: "nonaktif" | "aktif";
-  bank?: Array<BankInterface>;
+  bank: Array<BankInterface>;
 }
 
 export interface VoucherInterface {
@@ -43,6 +43,8 @@ export interface VoucherInterface {
   __v?: number;
   nominal?: [NominalInterface];
 }
+
+
 
 
 // Component Interface

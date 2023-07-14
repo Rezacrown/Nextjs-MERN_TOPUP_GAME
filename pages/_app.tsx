@@ -2,6 +2,9 @@ import react, { useEffect } from "react";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import AOS from "aos";
+import {ToastContainer, toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+
 
 // css custom
 import "../styles/css/homepage.css";
@@ -19,6 +22,11 @@ import "../styles/css/overview.css";
 import "../styles/css/transactions.css";
 import "../styles/css/transactions-detail.css";
 import "../styles/css/edit-profile.css";
+
+
+// redux settings
+import store from '@/redux/store'
+import {Provider} from 'react-redux'
 
 
 export default function myApp({ Component, pageProps }: AppProps) {
@@ -56,7 +64,10 @@ export default function myApp({ Component, pageProps }: AppProps) {
           crossOrigin="anonymous"
         ></script>
       </Head>
+      <Provider store={store}>
       <Component {...pageProps} />
+      <ToastContainer position="top-right" />
+      </Provider>
     </>
   );
 }

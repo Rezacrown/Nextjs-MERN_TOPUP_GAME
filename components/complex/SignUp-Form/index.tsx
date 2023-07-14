@@ -1,12 +1,36 @@
-import React from "react";
+import React, {useState} from "react";
 
 import TextInput from "@/components/atoms/TextInput";
 import Image from "next/image";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 export default function SignUp_Form() {
+
+  const router = useRouter()
+
+  const [data, setData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  })
+
+
+  const handleChange = (e: any) => {
+    setData({...data, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e?: any) => {
+    e.preventDefault()
+    // console.log(data)
+    localStorage.setItem('signup-form', JSON.stringify(data))
+    router.push({query: {photo: ''}})
+  }
+
+
   return (
-    <form action="">
+    <form onSubmit={handleSubmit}>
+        {/* brand image */}
       <div className="pb-50">
         <Link className="navbar-brand" href="/">
           <Image
@@ -27,6 +51,8 @@ export default function SignUp_Form() {
           name="name"
           placeHolder="Enter your name"
           label="Name"
+          required
+          handleChange={(e) => handleChange(e)}
         />
       </div>
       <div className="pt-30">
@@ -35,6 +61,8 @@ export default function SignUp_Form() {
           name="email"
           placeHolder="Enter your email address"
           label="Email"
+          required
+          handleChange={(e) => handleChange(e)}
         />
       </div>
       <div className="pt-30">
@@ -43,17 +71,19 @@ export default function SignUp_Form() {
           name="password"
           placeHolder="Your password"
           label="Password"
+          required
+          minLength={8}
+          handleChange={(e) => handleChange(e)}
         />
       </div>
 
       <div className="button-group d-flex flex-column mx-auto pt-50">
-        <Link
+        <button
           className="btn btn-sign-up fw-medium text-lg text-white rounded-pill mb-16"
-          href="/signup/photo"
-          role="button"
+          type="submit"
         >
           Continue
-        </Link>
+        </button>
         <Link
           className="btn btn-sign-in fw-medium text-lg color-palette-1 rounded-pill"
           href="/signin"

@@ -1,29 +1,32 @@
-import React from 'react'
+import React from "react";
 
-import {PaymentInterface} from '@/interface/Player'
+import { PaymentInterface } from "@/interface/Player";
 
-export default function payment(props: PaymentInterface) {
+interface PaymentSelect extends PaymentInterface {
+  index: number;
+}
 
-    // console.log('props payment >>')
-    // console.log(props)
+export default function payment(props: PaymentSelect) {
+  // console.log('props payment >>')
+  // console.log(props)
 
-    const {status, _id, bank, type} = props
+  const { status, _id, bank, type, index } = props;
 
   return (
     <label
       className="col-lg-4 col-sm-6 ps-md-15 pe-md-15 pt-md-15 pb-md-15 pt-10 pb-10"
-      htmlFor={_id}
+      htmlFor={bank[index]?._id}
     >
       <input
         className="d-none"
         type="radio"
-        id={_id}
+        id={bank[index]?._id}
         name="paymentMethod"
-        value={_id}
+        value={bank[index]?._id}
       />
       <div className="detail-card">
         <div className="d-flex justify-content-between">
-                  <p className="text-3xl color-palette-1 fw-medium m-0">{type}</p>
+          <p className="text-3xl color-palette-1 fw-medium m-0">{type}</p>
           <svg
             id="icon-check"
             width="20"
@@ -42,7 +45,17 @@ export default function payment(props: PaymentInterface) {
             />
           </svg>
         </div>
-              <p className="text-lg color-palette-1 m-0">{bank?.length && bank[0]?.nameBank }</p>
+        <p className="text-lg color-palette-1 m-0">
+          {bank?.length && bank[index]?.nameBank}
+        </p>
+        <br />
+        <b className="text-lg color-palette-1 m-0">
+          {bank?.length && bank[index]?.name}
+        </b>
+        <br />
+        <b className="text-lg color-palette-1 m-0">
+          {bank?.length && bank[index]?.noRekening}
+        </b>
       </div>
     </label>
   );
