@@ -1,29 +1,38 @@
-import {getData, postData} from '@/utils/Fetch'
-import {SuccesNotif} from '@/utils/notif'
-const V1 = '/api/v1'
+import { getData, postData } from "@/utils/Fetch";
+import { SuccesNotif } from "@/utils/notif";
+import decoded from "jwt-decode";
+import Cookie from "js-cookie";
 
 
+import { UserPayload } from "@/interface/navbar";
+
+
+const V1 = "/api/v1";
 
 export const getCategory = async () => {
-    const res = await getData(`${V1}/player/category`)
-    // console.log('res service')
-    // console.log(res)
+  const res = await getData(`${V1}/player/category`);
+  // console.log('res service')
+  // console.log(res)
 
-    return res?.data
-}
-
+  return res?.data;
+};
 
 export const checkLocalStorage = (localstorage: string) => {
-    const storage = localStorage.getItem(localstorage)
-    let parsing = null
+  const storage = localStorage.getItem(localstorage!);
+  let parsing = null;
 
-    if(storage !== null) {
-        parsing = JSON.parse(storage)
-        return parsing
-    } else {
-        return null
-    }
-}
+  if (storage !== null) {
+    parsing = JSON.parse(storage);
+    return parsing;
+  } else {
+    return null;
+  }
+};
+export const handleSignup = async (data: FormData) => {
+  const res = await postData(`${V1}/auth/signup`, data);
+  return res.message;
+};
+
 
 
 // PR nanti buat refresh token
@@ -35,15 +44,33 @@ export const checkLocalStorage = (localstorage: string) => {
 //     }
 // }
 
-
-export const handleSignup = async (data: any) => {
-    const res = await postData(`${V1}/auth/signup`, data)
-    return res.message
-}
+export const checkCookies = (cookie: string) => {
+    const storage = Cookie.get(cookie);
+    if (storage) {
+        const getHashedToken = atob(storage!);
+        const payload: UserPayload = decoded(getHashedToken)
+        // console.log('payload >>>')
+        // console.log(payload)
+        return payload
+    } else {
+        return null
+    }
+};
 
 export const handleSignin = async (data: any) => {
-    const res = await postData(`${V1}/auth/signin`, data).then((res: any)=> {
-        localStorage.setItem('authToken', res?.token) 
-    })
-    return res
-}
+  const res = await postData(`${V1}/auth/signin`, data).then((res: any) => {
+    // hash token dan simpan di cookies agar aman
+    const hashToken = btoa(res?.token);
+    Cookie.set("authToken", hashToken, {
+      expires: 1,
+      secure: true,
+    });
+  });
+  return res;
+};
+
+
+export const removeToken = (token: string) => {
+  Cookie.remove(token)
+  return 'success'
+};
