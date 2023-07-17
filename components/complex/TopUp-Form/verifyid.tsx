@@ -1,6 +1,15 @@
-import React from 'react'
+import React, {ChangeEventHandler} from 'react'
 
-const verifyId = () => {
+
+
+interface onChanging {
+  setVerifyId: (e?: any) => void;
+}
+
+const verifyId = (props: onChanging) => {
+  const { setVerifyId } = props;
+
+
   return (
     <div className="pt-md-50 pt-30">
       <div className="">
@@ -11,13 +20,15 @@ const verifyId = () => {
           type="text"
           className="form-control rounded-pill text-lg"
           name="ID"
+          // required
           aria-describedby="verifyID"
           placeholder="Enter your ID"
+          onChange={(e)=>setVerifyId(e)}
         />
       </div>
     </div>
   );
-}
+};
 
 
 export default verifyId

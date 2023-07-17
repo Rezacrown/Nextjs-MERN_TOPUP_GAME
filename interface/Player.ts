@@ -16,6 +16,7 @@ export interface NominalInterface {
   coinQuantity?: number;
   coinName?: string;
   price?: number;
+  handleSelect?: (e?: any) => void
 }
 
 export interface BankInterface {

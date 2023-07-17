@@ -1,12 +1,17 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import SignUp_Form from '@/components/complex/SignUp-Form'
 import SignUp_Form_photo from '@/components/complex/SignUp-Form/photo'
 
 import { useRouter } from "next/router";
 
 
+import { checkServerCookie, isLogin } from '@/services/Auth';
+import { GetServerSideProps } from 'next';
+
+
 export default function signup() {
-  const  {query, isReady} = useRouter()
+  const { query, isReady } = useRouter()
+  
 
   return (
     <>
@@ -22,3 +27,23 @@ export default function signup() {
     </>
   )
 }
+
+
+// ssr
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+}): Promise<any> => {
+
+  const { authToken } = req.cookies
+  if (authToken) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: true
+    }}
+  }
+
+  return {
+    props: {}
+  }
+};

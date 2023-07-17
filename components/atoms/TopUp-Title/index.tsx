@@ -7,8 +7,6 @@ interface TopUpTitleprops extends VoucherInterface {
 }
 
 export default function TopUp_Title(props: TopUpTitleprops) {
-  console.log("props 123 >>");
-  console.log(props);
 
   // let tipe = 'destop'
 

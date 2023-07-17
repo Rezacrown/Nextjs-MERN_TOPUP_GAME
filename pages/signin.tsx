@@ -1,4 +1,5 @@
 import SignIn_Form from "@/components/complex/SignIn-Form";
+import { GetServerSideProps } from "next";
 
 export default function SignIn() {
   return (
@@ -33,3 +34,22 @@ export default function SignIn() {
     </>
   );
 }
+
+
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+}): Promise<any> => {
+  const { authToken } = req.cookies;
+  if (authToken) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: true
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};

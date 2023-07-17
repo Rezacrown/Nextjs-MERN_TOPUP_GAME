@@ -18,8 +18,8 @@ export const getLandingpageAPI = async (): Promise<void> => {
 export const getDetailpageAPI = async (id: string): Promise<void> => {
   try {
     const res = await getData(`${V1}/player/${id}/detail`);
-    console.log('res >>>')
-    console.log(res)
+    // console.log('res >>>')
+    // console.log(res)
     return res.data;
   } catch (error) {
     console.log(error);

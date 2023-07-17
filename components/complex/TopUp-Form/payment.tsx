@@ -4,13 +4,14 @@ import { PaymentInterface } from "@/interface/Player";
 
 interface PaymentSelect extends PaymentInterface {
   index: number;
+  handlePay: (payment?: any, bank?: any) => void;
 }
 
 export default function payment(props: PaymentSelect) {
   // console.log('props payment >>')
   // console.log(props)
 
-  const { status, _id, bank, type, index } = props;
+  const { status, _id, bank, type, index, handlePay } = props;
 
   return (
     <label
@@ -23,6 +24,8 @@ export default function payment(props: PaymentSelect) {
         id={bank[index]?._id}
         name="paymentMethod"
         value={bank[index]?._id}
+        // required
+        onChange={() => handlePay(_id, bank[index]?._id)}
       />
       <div className="detail-card">
         <div className="d-flex justify-content-between">

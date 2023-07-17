@@ -3,9 +3,8 @@ import { SuccesNotif } from "@/utils/notif";
 import decoded from "jwt-decode";
 import Cookie from "js-cookie";
 
-
 import { UserPayload } from "@/interface/navbar";
-
+// import jwtDecode from "jwt-decode";
 
 const V1 = "/api/v1";
 
@@ -33,28 +32,26 @@ export const handleSignup = async (data: FormData) => {
   return res.message;
 };
 
-
-
-// PR nanti buat refresh token
-// export const isLogin = () => {
-//     const token = localStorage.getItem('authToken') ? JSON.parse(localStorage.getItem('authToken') ?? '') : null
-
-//     if(token) {
-
-//     }
-// }
+export const isLogin = () => {
+    const storage = Cookie.get('authToken');
+    if(storage) {
+      return 'isLogin'
+    } else {
+      return null
+    }
+}
 
 export const checkCookies = (cookie: string) => {
-    const storage = Cookie.get(cookie);
-    if (storage) {
-        const getHashedToken = atob(storage!);
-        const payload: UserPayload = decoded(getHashedToken)
-        // console.log('payload >>>')
-        // console.log(payload)
-        return payload
-    } else {
-        return null
-    }
+  const storage = Cookie.get(cookie);
+  if (storage) {
+    const getHashedToken = atob(storage!);
+    const payload: UserPayload = decoded(getHashedToken);
+    // console.log('payload >>>')
+    // console.log(payload)
+    return payload;
+  } else {
+    return null;
+  }
 };
 
 export const handleSignin = async (data: any) => {
@@ -69,8 +66,17 @@ export const handleSignin = async (data: any) => {
   return res;
 };
 
-
 export const removeToken = (token: string) => {
-  Cookie.remove(token)
-  return 'success'
+  Cookie.remove(token);
+  return "success";
 };
+
+
+// untuk handle check di SSR
+export const checkServerCookie = (token: string, type: 'base64') => {
+  const res = Buffer.from(token, type).toString('ascii')
+
+  const decode: UserPayload = decoded(res);
+
+  return decode
+}

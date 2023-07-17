@@ -1,6 +1,17 @@
 import React from 'react'
+import { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import {WarningNotif} from '@/utils/notif/index'
+import { checkServerCookie } from '@/services/Auth';
+import { UserPayload } from '@/interface/navbar';
 
-export default function checkout() {
+
+
+export default function checkout(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
+
+    const user: UserPayload = props.user;
+
+
+    
   return (
     <>
       <section className="checkout mx-auto pt-md-100 pb-md-145 pt-30 pb-30">
@@ -78,4 +89,26 @@ export default function checkout() {
     </section>
     </>
   )
+}
+
+
+// SSR
+export const getServerSideProps: GetServerSideProps = async ({req}): Promise<any> => {
+    const { authToken } = req.cookies
+
+    if (!authToken) {
+        return {
+            redirect: {
+                destination: '/signin'
+            }
+        }
+    }
+
+    const user = checkServerCookie(authToken, "base64");
+
+    return {
+        props: {
+            user
+        }
+    }
 }

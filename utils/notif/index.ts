@@ -7,3 +7,7 @@ export const SuccesNotif = (message: string) => {
 export const ErrorNotif = (message: string) => {
     toast.error(message)
 }
+
+export const WarningNotif = (message: string) => {
+    toast.info(message)
+}
