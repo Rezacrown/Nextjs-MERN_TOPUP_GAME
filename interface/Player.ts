@@ -12,10 +12,10 @@ export interface UserInterface {
 }
 
 export interface NominalInterface {
-  _id?: string;
-  coinQuantity?: number;
-  coinName?: string;
-  price?: number;
+  _id: string;
+  coinQuantity: number;
+  coinName: string;
+  price: number;
   handleSelect?: (e?: any) => void
 }
 

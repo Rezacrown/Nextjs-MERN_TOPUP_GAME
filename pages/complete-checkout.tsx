@@ -1,4 +1,6 @@
 import React from "react";
+import Link from 'next/link'
+import {config} from '@/config'
 
 export default function completeCheckout() {
   return (
@@ -266,17 +268,18 @@ export default function completeCheckout() {
             </p>
           </div>
           <div className="button-group d-flex flex-column mx-auto">
-            <a
+            <Link
               className="btn btn-dashboard fw-medium text-lg text-white rounded-pill mb-16"
-              href="../member/overview.html"
+              href="/member"
               role="button"
             >
               My Dashboard
-            </a>
+            </Link>
             <a
               className="btn btn-whatsapp fw-medium text-lg color-palette-1 rounded-pill"
-              href="#"
+              href={config.WHATSAPP}
               role="button"
+              target="_blank"
             >
               WhatsApp ke Admin
             </a>

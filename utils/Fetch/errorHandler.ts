@@ -6,7 +6,16 @@ export default function Errorhandler(error: any) {
   if (error) {
     let message;
     if (error.response) {
-        message = error.response.data.message || "internal server error";
+        message = error.response.data.message || 'Internal Server Error';
+
+      switch(message) {
+        case 'not authorized this route': {
+          window.location.href = '/signin'
+        };
+        default: {
+          message
+        }
+      }
 
            
       toast.error(message);

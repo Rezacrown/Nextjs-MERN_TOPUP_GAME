@@ -9,5 +9,5 @@ export const ErrorNotif = (message: string) => {
 }
 
 export const WarningNotif = (message: string) => {
-    toast.info(message)
+    toast.warning(message)
 }

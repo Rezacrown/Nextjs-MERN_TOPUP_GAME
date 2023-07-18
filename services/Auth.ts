@@ -27,6 +27,7 @@ export const checkLocalStorage = (localstorage: string) => {
     return null;
   }
 };
+
 export const handleSignup = async (data: FormData) => {
   const res = await postData(`${V1}/auth/signup`, data);
   return res.message;
@@ -59,7 +60,7 @@ export const handleSignin = async (data: any) => {
     // hash token dan simpan di cookies agar aman
     const hashToken = btoa(res?.token);
     Cookie.set("authToken", hashToken, {
-      expires: 1,
+      expires: 1 / 6,
       secure: true,
     });
   });
@@ -79,4 +80,9 @@ export const checkServerCookie = (token: string, type: 'base64') => {
   const decode: UserPayload = decoded(res);
 
   return decode
+}
+
+
+export const isValidToken = (token: string) => {
+  
 }

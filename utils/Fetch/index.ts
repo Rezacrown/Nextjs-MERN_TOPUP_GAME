@@ -17,11 +17,13 @@ export const getData = async (
 export const postData = async (
   url: string,
   payload?: object,
-  token?: string,
+  token?: string | null,
 ): Promise<any> => {
+  console.log('token <<')
+  console.log(token)
   return await instance.post(`${url}`, payload, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token!!}`,
     },
   });
 };

@@ -33,10 +33,10 @@ export default function Navbar() {
 
 
   const handleLogout = () => {
-      const res = removeToken('authToken')
-      if (res == 'success') {
-          router.push('/signin')
-        } 
+      localStorage.clear()
+      removeToken('authToken')
+      router.push('/signin')
+        
   }
     
 
