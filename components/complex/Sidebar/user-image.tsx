@@ -13,9 +13,9 @@ export default function user_image(user: userData) {
   return (
     <div className="user text-center pb-50 pe-30">
       <Image
-        src={`${config.URL}/${user.avatar}` || "/assets/img/avatar-1.png"}
-        width="90"
-        height="90"
+        src={`${config.URL}/${user?.avatar}` || "/assets/img/avatar-1.png"}
+        width="80"
+        height="40"
         className="img-fluid mb-20"
         style={{borderRadius: '100%'}}
         alt=""

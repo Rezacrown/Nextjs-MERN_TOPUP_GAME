@@ -7,7 +7,7 @@ export default function edit_Profile() {
   return (
     <>
       <section className="edit-profile overflow-auto">
-        <Sidebar activeMenu="settings" />
+        <Sidebar user={''} activeMenu="settings" />
         {/* main */}
         <main className="main-wrapper">
           <div className="ps-lg-0">

@@ -1,4 +1,5 @@
-import {ToastContainer, toast } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
+
 
 export default function Errorhandler(error: any) {
   // console.log('error >>>>>>>>>>>>')
@@ -12,6 +13,9 @@ export default function Errorhandler(error: any) {
         case 'not authorized this route': {
           window.location.href = '/signin'
         };
+        // case 'InvalidCharacterError: The string to be decoded is not correctly encoded.': {
+        //   window.location.href = "/signin";
+        //   }
         default: {
           message
         }

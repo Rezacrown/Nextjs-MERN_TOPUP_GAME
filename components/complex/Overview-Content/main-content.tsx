@@ -1,130 +1,37 @@
-import React from 'react'
-import Category_content from './category-content'
+import React, { useState, useEffect } from "react";
+import Category_content from "./category-content";
 
-export default function main_content() {
+interface countProps {
+  _id: string;
+  value: number;
+  name: string;
+}
+
+export default function main_content(props: any) {
+  const categoryIcon = ["mobile", "destop", "other-categories"];
+
+  let temp: any = [];
+
+  Object.values(props).forEach((key: any) => {
+    if (categoryIcon.includes(key.name.toLowerCase())) {
+      key.name = key.name.toLowerCase();
+    }
+    temp.push(key);
+  });
+
   return (
     <div className="main-content">
       <div className="row">
-        {/* <div className="col-lg-4 ps-15 pe-15 pb-lg-0 pb-4">
-          <div className="categories-card">
-            <div className="d-flex align-items-center mb-24">
-              <svg
-                width="60"
-                height="60"
-                viewBox="0 0 60 60"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <mask
-                  id="mask0-category-1"
-                  mask-type="alpha"
-                  maskUnits="userSpaceOnUse"
-                  x="0"
-                  y="0"
-                  width="60"
-                  height="60"
-                >
-                  <circle cx="30" cy="30" r="30" fill="#D7D7F8" />
-                </mask>
-                <g mask="url(#mask0-category-1)">
-                  <circle cx="30" cy="30" r="30" fill="#D7D7F8" />
-                  <mask
-                    id="mask1-category-1"
-                    mask-type="alpha"
-                    maskUnits="userSpaceOnUse"
-                    x="10"
-                    y="12"
-                    width="40"
-                    height="30"
-                  >
-                    <rect
-                      x="10"
-                      y="12.5"
-                      width="40"
-                      height="28.75"
-                      rx="6"
-                      fill="#695DE9"
-                    />
-                  </mask>
-                  <g mask="url(#mask1-category-1)">
-                    <rect
-                      x="10"
-                      y="12.5"
-                      width="40"
-                      height="28.75"
-                      rx="6"
-                      fill="#695DE9"
-                    />
-                    <circle cx="43" cy="19" r="10" fill="#4F46B5" />
-                  </g>
-                  <circle cx="43" cy="18" r="9" fill="#2B2467" />
-                  <path
-                    d="M42.5109 13.0768C42.6649 12.603 43.3352 12.603 43.4891 13.0768L44.3279 15.6581C44.3967 15.87 44.5942 16.0135 44.817 16.0135H47.5311C48.0293 16.0135 48.2365 16.651 47.8334 16.9438L45.6376 18.5392C45.4574 18.6701 45.3819 18.9023 45.4508 19.1142L46.2895 21.6955C46.4435 22.1693 45.9012 22.5633 45.4981 22.2705L43.3023 20.6751C43.1221 20.5442 42.878 20.5442 42.6977 20.6751L40.5019 22.2705C40.0989 22.5633 39.5566 22.1693 39.7105 21.6955L40.5492 19.1142C40.6181 18.9023 40.5427 18.6701 40.3624 18.5392L38.1666 16.9438C37.7635 16.651 37.9707 16.0135 38.4689 16.0135H41.1831C41.4059 16.0135 41.6033 15.87 41.6722 15.6581L42.5109 13.0768Z"
-                    fill="white"
-                  />
-                  <rect x="25" y="40" width="10" height="7.5" fill="#695DE9" />
-                  <rect
-                    x="17.5"
-                    y="47.5"
-                    width="25"
-                    height="2.5"
-                    rx="1.25"
-                    fill="#695DE9"
-                  />
-                  <path
-                    d="M32.6875 35.3125L15.5 35.3125"
-                    stroke="white"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M19.5 18.3125L15.5 18.3125"
-                    stroke="white"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M26.4375 29.5L15.5 29.5"
-                    stroke="#B7B0F4"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </g>
-              </svg>
-              <p className="color-palette-1 mb-0 ms-12">
-                Game
-                <br /> Desktop
-              </p>
-            </div>
-            <div>
-              <p className="text-sm color-palette-2 mb-1">Total Spent</p>
-              <p className="text-2xl color-palette-1 fw-medium m-0">
-                Rp 18.000.500
-              </p>
-            </div>
-          </div>
-        </div> */}
-        <Category_content
-          text1="Game"
-          text2="Destop"
-          icon="destop"
-          totalSpend={"18.000.500"}
-        />
-        <Category_content
-          text1="Game"
-          text2="Mobile"
-          icon="mobile"
-          totalSpend={"8.455.000"}
-        />
-        <Category_content
-          text1="Other"
-          text2="Categories"
-          icon="other-categories"
-          totalSpend={"5.000.000"}
-        />
+        {temp.map((item: countProps, index: number) => {
+          return (
+            <Category_content
+              text1="Game"
+              text2={item?.name}
+              icon={"destop"}
+              totalSpend={item?.value}
+            />
+          );
+        })}
       </div>
     </div>
   );

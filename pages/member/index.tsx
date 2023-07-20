@@ -10,8 +10,8 @@ export default function Member(
 
   const { user } = props;
   
-  console.log('props >>')
-  console.log(user)
+  // console.log('props >>')
+  // console.log(user)
 
 
   return (

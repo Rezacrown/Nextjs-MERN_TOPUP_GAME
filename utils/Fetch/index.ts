@@ -3,11 +3,11 @@ import instance from "@/utils/Fetch/axios";
 
 export const getData = async (
   url: string,
-  params?: string,
+  params?: string | object,
   token?: any
 ): Promise<any> => {
   return await instance.get(url, {
-    params,
+    params: params,
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -19,8 +19,8 @@ export const postData = async (
   payload?: object,
   token?: string | null,
 ): Promise<any> => {
-  console.log('token <<')
-  console.log(token)
+  // console.log('token <<')
+  // console.log(token)
   return await instance.post(`${url}`, payload, {
     headers: {
       Authorization: `Bearer ${token!!}`,

@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
+import { config } from "@/config";
+import { NumericFormat } from "react-number-format";
+
+
 
 interface tbody_props {
   image: string;
   title: string;
   items: string | number;
   price: number;
-  type: "Destop" | "Mobile";
-  status: "Success" | "Pending" | "Failed";
+  type: "Destop" | "Mobile" | string;
+  status: "success" | "pending" | "failed";
+  
 }
 
 export default function tbody_transaction({
@@ -28,7 +33,7 @@ export default function tbody_transaction({
       <th scope="row">
         <Image
           className="float-start me-3 mb-lg-0 mb-3"
-          src={`/assets/img/${image}`}
+          src={`${config.URL}/${image}` || `/assets/img/${image}`}
           width="80"
           height="60"
           alt=""
@@ -47,12 +52,22 @@ export default function tbody_transaction({
         <p className="fw-medium color-palette-1 m-0">{items}</p>
       </td>
       <td>
-        <p className="fw-medium text-start color-palette-1 m-0">Rp {price}</p>
+        <p className="fw-medium text-start color-palette-1 m-0">
+          <NumericFormat
+              value={price ? price : 0}
+              displayType="text"
+              prefix="Rp. "
+              thousandSeparator="."
+              decimalSeparator=","
+            />
+        </p>
       </td>
       <td>
         <div>
           <span className={className}></span>
-          <p className="fw-medium text-start color-palette-1 m-0 position-relative">{status}</p>
+          <p className="fw-medium text-start color-palette-1 m-0 position-relative">
+            {status}
+          </p>
         </div>
       </td>
     </tr>
