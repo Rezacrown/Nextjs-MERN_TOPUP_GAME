@@ -92,7 +92,7 @@ export default function Navbar() {
                 </Link>
               </li>
               <li className="nav-item my-auto">
-                {data.avatar || data.username ? (
+                {data?.avatar || data?.username ? (
                   <li className="nav-item my-auto dropdown d-flex">
                     <div className="vertical-line d-lg-block d-none" />
                     <div>
@@ -109,7 +109,7 @@ export default function Navbar() {
                           className="rounded-circle"
                           width="50"
                           height="50"
-                          alt=""
+                          alt="avatar"
                         />
                       </a>
 

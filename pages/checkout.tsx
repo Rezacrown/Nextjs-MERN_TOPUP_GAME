@@ -13,6 +13,7 @@ import DetailPurchase from "@/components/complex/Checkout-form/detailPurchase";
 import PaymentInfo from "@/components/complex/Checkout-form/payment-info";
 
 import {useRouter} from 'next/router'
+import Head from "next/document";
 
 interface newDataItems {
   payments: any;

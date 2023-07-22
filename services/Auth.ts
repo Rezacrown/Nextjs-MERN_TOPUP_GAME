@@ -61,7 +61,6 @@ export const handleSignin = async (data: any) => {
     const hashToken = btoa(res?.token);
     Cookie.set("authToken", hashToken, {
       expires: 1 / 6,
-      secure: true,
     });
   });
   return res;

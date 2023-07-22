@@ -8,25 +8,24 @@ interface MenuItemsProps {
     link?: string;
   active?: boolean;
   name?: string;
+  handleFunction?: () => void;
 }
 
 
 
-export default function menu_items({title, link = '/#', src, active, name}: MenuItemsProps) {
+export default function menu_items({title, link = '/#', src, active, name, handleFunction }: MenuItemsProps) {
 
     const className = `item mb-30 ${active? 'active' : ''}`
 
   return (
     <div className={className}>
-      <Image
-        className="icon me-3"
-        src={src}
-        height={25}
-        width={25}
-        alt=""
-      />
+      <Image className="icon me-3" src={src} height={25} width={25} alt="" />
       <p className="item-title m-0">
-        <Link href={link} className="text-lg text-decoration-none">
+        <Link
+          href={link}
+          className="text-lg text-decoration-none"
+          onClick={handleFunction}
+        >
           {title}
         </Link>
       </p>

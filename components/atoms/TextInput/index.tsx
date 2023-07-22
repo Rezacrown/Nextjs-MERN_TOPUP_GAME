@@ -8,6 +8,8 @@ export interface TextInputProps {
   maxLength?: number;
   minLength?: number;
   required?: boolean;
+  value?: string | number;
+  disabled?: boolean;
   handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -20,6 +22,8 @@ export default function TextInput({
   maxLength,
   minLength,
   required,
+  value,
+  disabled,
 }: TextInputProps) {
   return (
     <>
@@ -39,6 +43,8 @@ export default function TextInput({
         onChange={handleChange}
         minLength={minLength}
         maxLength={maxLength}
+        value={value}
+        disabled={disabled}
       />
     </>
   );

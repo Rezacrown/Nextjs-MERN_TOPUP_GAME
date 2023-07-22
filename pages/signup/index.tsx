@@ -17,15 +17,11 @@ export default function signup() {
     <>
       <section className="sign-up mx-auto pt-lg-100 pb-lg-100 pt-30 pb-47">
         <div className="container mx-auto">
-
-
-          {query?.photo == '' ?  <SignUp_Form_photo/> : <SignUp_Form />}
-
-            
+          {query?.photo == "" ? <SignUp_Form_photo /> : <SignUp_Form />}
         </div>
-    </section>
+      </section>
     </>
-  )
+  );
 }
 
 

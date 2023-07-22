@@ -1,22 +1,27 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import type {
+  InferGetServerSidePropsType,
+  InferGetStaticPropsType,
+  GetServerSideProps,
+  GetStaticProps,
+  GetStaticPaths,
+} from "next";
 import TopUp_Title from "@/components/atoms/TopUp-Title";
 import TopUpForm from "@/components/complex/TopUp-Form";
-import {config} from '@/config'
+import { config } from "@/config";
 
 import { getDetailpageAPI } from "@/services/Player";
-import {DetailPageInterface} from '@/interface/Player'
+import { DetailPageInterface } from "@/interface/Player";
+import { ParsedUrlQuery } from "querystring";
 
-
-
-
-export default function detailPage() {
-
+export default function detailPage(
+  // props: InferGetStaticPropsType<typeof getStaticProps>
+) {
   const router = useRouter();
   const { query, isReady } = router;
 
-  const [detailData, setDetailData] = useState<DetailPageInterface>()
+  const [detailData, setDetailData] = useState<DetailPageInterface>();
 
   const fetchData = useCallback((id: any) => {
     getDetailpageAPI(id).then((data: any) => setDetailData(data));
@@ -29,7 +34,6 @@ export default function detailPage() {
       console.log("router belum siap  ");
     }
   }, [isReady]);
-
 
   return (
     <section className="detail pt-lg-60 pb-50">
@@ -63,7 +67,7 @@ export default function detailPage() {
             {/* <!-- Desktop: Game title --> */}
             <TopUp_Title tipe="destop" {...detailData?.voucher} />
             <hr />
-            <TopUpForm  {...detailData} />
+            <TopUpForm {...detailData} />
           </div>
         </div>
       </div>
@@ -73,13 +77,13 @@ export default function detailPage() {
 
 
 
-// export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-//   console.log("params >>>>");
-//   console.log(query);
 
-//   return {
-//     props: {
-//       query,
-//     },
-//   };
+// setup SSG 
+
+// const getStaticPath: GetStaticPaths = async (): Promise<any> => {
+
+// };
+
+// export const getStaticProps: GetStaticProps = async (): Promise<any> => {
+
 // };

@@ -1,6 +1,7 @@
 import React from "react";
 import Link from 'next/link'
 import {config} from '@/config'
+import Head from "next/document";
 
 export default function completeCheckout() {
   return (

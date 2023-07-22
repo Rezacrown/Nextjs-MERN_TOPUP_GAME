@@ -20,7 +20,7 @@ export default function cardGame({link = '', src = '', subTitle = '', title = ''
             src={src}
             width="205"
             height="270"
-            alt=""
+            alt={title}
           />
         </div>
         <div className="cover position-absolute bottom-0 m-32">

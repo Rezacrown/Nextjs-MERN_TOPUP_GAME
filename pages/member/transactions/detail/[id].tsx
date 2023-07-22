@@ -39,14 +39,6 @@ export default function detail({data, params}: InferGetServerSidePropsType<typeo
                     >
                       WhatsApp ke Admin
                     </Link>
-                    <Link
-                      className="btn btn-secondary rounded-pill fw-medium text-white border-0 text-lg"
-                      href={'/'}
-                      role="button"
-                      style={{padding: '0.75rem 2.875rem'}}
-                    >
-                      Beranda
-                    </Link>
                   </div>
                 </section>
               </div>

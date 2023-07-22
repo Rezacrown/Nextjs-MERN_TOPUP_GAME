@@ -2,7 +2,22 @@
 
 const nextConfig = {
   images: {
-    domains: ["rizkyreza.ap-1.evennode.com", "localhost:5000"],
+    domains: ["http://localhost:5000", "rizkyreza.ap-1.evennode.com"],
+    // formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        hostname: "localhost",
+        pathname: "**",
+        port: "5000",
+        protocol: "http",
+      },
+      // {
+      //   hostname: "rizkyreza.ap-1.evennode.com",
+      //   pathname: "**",
+      //   port: "5000",
+      //   protocol: "http",
+      // },
+    ],
   },
   crossOrigin: "anonymous",
   headers: [

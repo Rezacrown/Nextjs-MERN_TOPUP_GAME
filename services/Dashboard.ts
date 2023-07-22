@@ -1,4 +1,4 @@
-import { postData, getData } from "@/utils/Fetch";
+import { postData, getData, putData } from "@/utils/Fetch";
 import { SuccesNotif } from "@/utils/notif";
 import Cookies from "js-cookie";
 // import { GetServerSideProps, InferGetServerSidePropsType } from "next";
@@ -42,3 +42,32 @@ export const getDetailHistoryTransactions = async (params: string, trueToken: st
 
     return res.data;
 };
+
+
+export const getDataProfile = async () => {
+  const hashedtoken = Cookies.get("authToken");
+  const trueToken = atob(hashedtoken!);
+
+
+  const res = await getData(`${V1}/player/profile`, '', trueToken)
+
+  // console.log('data profile')
+  // console.log(res.data)
+
+  return res.data;
+}
+
+
+export const updateProfile = async (payload: FormData) => {
+   const hashedtoken = Cookies.get("authToken");
+   const trueToken = atob(hashedtoken!);
+
+  const res = await putData(`${V1}/player/profile`, payload, trueToken).then((response: any) => {
+    Cookies.remove('authToken')
+    SuccesNotif(response?.message)
+  })
+
+  
+  
+  return res
+}

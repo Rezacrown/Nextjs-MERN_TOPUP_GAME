@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Menu_items from "./menu-items";
+import { useRouter } from 'next/router';
+import Cookies from "js-cookie";
 
 interface MenuSidebar_props {
   actived:
@@ -13,7 +15,14 @@ interface MenuSidebar_props {
     | "rewards";
 }
 
-export default function menus({actived}: MenuSidebar_props) {
+export default function menus({ actived }: MenuSidebar_props) {
+  const router = useRouter()
+  
+  const handleLogout = () => {
+    Cookies.remove('authToken')
+    router.push('/signin')
+  }
+
   return (
     <div className="menus">
       <Menu_items
@@ -28,7 +37,7 @@ export default function menus({actived}: MenuSidebar_props) {
         link="/member/transactions"
         active={actived === "transactions"}
       />
-      <Menu_items
+      {/* <Menu_items
         src="/assets/icon/sidebar/icon-3.svg"
         title="Messages"
         link="/member"
@@ -45,7 +54,7 @@ export default function menus({actived}: MenuSidebar_props) {
         title="Rewards"
         link="/member"
         active={actived === "rewards"}
-      />
+      /> */}
       <Menu_items
         src="/assets/icon/sidebar/icon-6.svg"
         title="Settings"
@@ -56,6 +65,7 @@ export default function menus({actived}: MenuSidebar_props) {
         src="/assets/icon/sidebar/icon-7.svg"
         title="Log Out"
         link="/signin"
+        handleFunction={handleLogout}
       />
     </div>
   );

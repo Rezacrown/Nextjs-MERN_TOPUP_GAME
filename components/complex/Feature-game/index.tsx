@@ -25,7 +25,7 @@ export default function FeatureGame() {
           <br /> Games This Year
         </h2>
         <div
-          className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-between gap-lg-3 gap-4"
+          className="d-flex flex-row flex-lg-wrap overflow-setting justify-content-lg-start gap-lg-3 gap-4"
           data-aos="fade-up"
         >
           {gameList?.length > 0 &&

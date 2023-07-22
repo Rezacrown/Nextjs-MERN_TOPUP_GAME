@@ -2,6 +2,7 @@ import OverviewContent from "@/components/complex/Overview-Content";
 import Sidebar from "@/components/complex/Sidebar";
 import { checkServerCookie } from "@/services/Auth";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import Head from "next/document";
 import React from "react";
 
 export default function Member(

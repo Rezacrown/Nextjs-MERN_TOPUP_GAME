@@ -1,9 +1,13 @@
 import SignIn_Form from "@/components/complex/SignIn-Form";
 import { GetServerSideProps } from "next";
+import Head from 'next/head'
 
 export default function SignIn() {
   return (
     <>
+      <Head>
+        <title>Sign In Form</title>
+      </Head>
       <section className="sign-in mx-auto">
         <div className="row">
           <div className="col-xxl-5 col-lg-6 my-auto py-lg-0 pt-lg-50 pb-lg-50 pt-30 pb-47 px-0">

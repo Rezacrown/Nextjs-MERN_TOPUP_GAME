@@ -7,6 +7,7 @@ import { getHistoryTransactions } from "@/services/Dashboard";
 import { useRouter } from "next/router";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { checkServerCookie } from "@/services/Auth";
+import Head from "next/document";
 
 
 
