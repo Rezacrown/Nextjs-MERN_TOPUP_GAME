@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "http://rizkyreza.ap-1.evennode.com"
+    }
+  ]
+}
