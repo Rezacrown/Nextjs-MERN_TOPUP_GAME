@@ -2,7 +2,7 @@
 
 const nextConfig = {
   images: {
-    domains: ["http://localhost:5000", "rizkyreza.ap-1.evennode.com"],
+    domains: ["http://localhost:5000", "rizkyreza.ap-1.evennode.com", "www.rizkyrezaserver123.my.id"],
     // formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
