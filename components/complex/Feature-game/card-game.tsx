@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from "next/link";
 import Image from 'next/image';
+import { config } from "@/config";
 
 export interface cardGameProps {
   link?: string;
@@ -17,7 +18,7 @@ export default function cardGame({link = '', src, subTitle = '', title = ''}: ca
       <Link href={link}>
         <div className="blur-sharp">
           <img
-            src={src}
+            src={`${config.URL}/${src}`}
             width="205"
             height="270"
             alt={title}
