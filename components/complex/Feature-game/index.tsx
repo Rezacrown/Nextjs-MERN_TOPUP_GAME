@@ -33,7 +33,7 @@ export default function FeatureGame() {
               return (
                 <CardGame
                   key={_id}
-                  src={`${config.URL}/${thumbnail}`}
+                  src={thumbnail}
                   link={`/detail/${_id}`}
                   title={name}
                   subTitle={category?.name}
