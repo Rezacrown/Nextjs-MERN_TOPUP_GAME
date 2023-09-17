@@ -6,7 +6,7 @@ export interface cardGameProps {
   link?: string;
   title?: string;
   subTitle?: string;
-  src?: string
+  src?: any;
 }
 
 export default function cardGame({link = '', src = '', subTitle = '', title = ''}: cardGameProps) {
@@ -16,7 +16,7 @@ export default function cardGame({link = '', src = '', subTitle = '', title = ''
     <div className="featured-game-card position-relative">
       <Link href={link}>
         <div className="blur-sharp">
-          <Image
+          <img
             src={src}
             width="205"
             height="270"
