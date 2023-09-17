@@ -9,7 +9,7 @@ export interface cardGameProps {
   src?: any;
 }
 
-export default function cardGame({link = '', src = '', subTitle = '', title = ''}: cardGameProps) {
+export default function cardGame({link = '', src, subTitle = '', title = ''}: cardGameProps) {
 
 
   return (
